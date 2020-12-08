@@ -50,6 +50,6 @@ public class MainController implements Initializable {
     @FXML
     public void answer()
     {
-        answer.setText(model.specialanswers(question.getText()));
+        answer.setText(model.answers(question.getText()));
     }
 }

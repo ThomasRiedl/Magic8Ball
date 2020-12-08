@@ -7,6 +7,7 @@ public class MainModel {
     private ArrayList<String> positiveanswers = new ArrayList<>();
     private ArrayList<String> neutralanswers = new ArrayList<>();
     private ArrayList<String> negativanswers = new ArrayList<>();
+    private ArrayList<String> answers = new ArrayList<>();
 
     public MainModel()
     {
@@ -30,13 +31,21 @@ public class MainModel {
         negativanswers.add("My sources say no.");
         negativanswers.add("Outlook not so good.");
         negativanswers.add("Very doubtful.");
+
+        answers.addAll(positiveanswers);
+        answers.addAll(neutralanswers);
+        answers.addAll(negativanswers);
     }
 
-    public String specialanswers (String a)
-    {
-        Random r = new Random();
+    Random r = new Random();
 
-        if(a.contains("Softwareentwicklung"))
+    public  String answers (String a)
+    {
+        if(a.contains("?"))
+        {
+            return answers.get(r.nextInt(answers.size()));
+        }
+        else if(a.contains("Softwareentwicklung"))
         {
             return positiveanswers.get(r.nextInt(positiveanswers.size()));
         }
@@ -58,8 +67,12 @@ public class MainModel {
 
         else if(a.contains("maths"))
         {
-            return positiveanswers.get(r.nextInt(negativanswers.size()));
+            return negativanswers.get(r.nextInt(negativanswers.size()));
         }
-        return a;
+        else
+        {
+            System.out.println("Please ask a question");
+        }
+        return "Please ask a question";
     }
 }
