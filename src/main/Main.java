@@ -1,3 +1,5 @@
+//Elijah Brettbacher hat mit wegen Problemen bei der Übung geholfen
+
 package main;
 
 import javafx.application.Application;

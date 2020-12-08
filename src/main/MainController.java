@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import loginScreen.LoginController;
 import loginScreen.LoginModel;
@@ -14,7 +16,14 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    @FXML
+    private TextField answer;
+    @FXML
+    private TextField question;
+
     private MainModel model = new MainModel();
+
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -23,16 +32,9 @@ public class MainController implements Initializable {
 
     public static void show(Stage stage)
     {
-        //navigate from welcome screen to main screen
-        System.out.println("Navigation started ...");
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("main.fxml"));
             Parent root = fxmlLoader.load();
-
-            //send data to MainController
-            MainController ctrl = fxmlLoader.getController();
-            ctrl.setStage(stage);
 
             Stage mainStage = new Stage();
             mainStage.setTitle("Main");
@@ -43,5 +45,11 @@ public class MainController implements Initializable {
         {
             System.out.println("Exception occured while loading main view!");
         }
+    }
+
+    @FXML
+    public void answer()
+    {
+        answer.setText(model.specialanswers(question.getText()));
     }
 }

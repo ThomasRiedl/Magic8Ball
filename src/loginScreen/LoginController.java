@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.MainController;
@@ -19,8 +18,6 @@ public class LoginController implements Initializable {
     private TextField name;
     @FXML
     private TextField password;
-    @FXML
-    private Button login;
 
     private LoginModel model = new LoginModel();
 
@@ -39,9 +36,6 @@ public class LoginController implements Initializable {
     @FXML
     public static void show(Stage stage)
     {
-        //navigate from welcome screen to main screen
-        System.out.println("Navigation started ...");
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"));
             Parent root = fxmlLoader.load();
@@ -50,10 +44,9 @@ public class LoginController implements Initializable {
             LoginController ctrl = fxmlLoader.getController();
             ctrl.setStage(stage);
 
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Main");
-            mainStage.setScene(new Scene(root, 500, 500));
-            mainStage.show();
+            stage.setTitle("Login");
+            stage.setScene(new Scene(root, 200, 200));
+            stage.show();
         }
         catch(Exception ex)
         {
@@ -61,7 +54,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML
     private void next()
     {
         MainController.show(new Stage());
@@ -81,5 +73,4 @@ public class LoginController implements Initializable {
             System.out.println("error");
         }
     }
-
 }
